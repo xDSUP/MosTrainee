@@ -1,6 +1,8 @@
 name: Build Frontend
 run-name: ${{ github.actor }} is building frontend
 on:
+  push:
+    branches: ['feature/**']
   pull_request:
     branches: [ master ]
 jobs:
