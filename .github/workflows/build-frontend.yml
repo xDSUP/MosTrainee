@@ -1,0 +1,25 @@
+name: Build Frontend
+run-name: ${{ github.actor }} is building frontend
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      #- uses: actions/setup-node@v3
+      #  with:
+      #    node-version: '16'
+      - name: Install dependencies
+        run: npm ci
+        working-directory: front
+      - name: Build
+        run: npm run build
+        working-directory: front
+      #- name: Archive artifacts
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: build-artifacts
+      #    path: front/dist
