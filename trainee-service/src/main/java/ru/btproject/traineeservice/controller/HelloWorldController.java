@@ -1,4 +1,4 @@
-package ru.btproject.traineeservice;
+package ru.btproject.traineeservice.controller;
 
 import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Setter
-@RequestMapping("api/hello")
+@RequestMapping("/api/hello")
 public class HelloWorldController {
 
     @GetMapping
