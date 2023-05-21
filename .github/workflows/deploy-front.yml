@@ -2,7 +2,7 @@ name: Deploy to cloud
 run-name: ${{ github.actor }} is building backend
 on:
   push:
-    branches: [ 'feature/test-branch' ]
+    branches: [ feature/test-branch ]
 
 jobs:
   build-and-deploy:
