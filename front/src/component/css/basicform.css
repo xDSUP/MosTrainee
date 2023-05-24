@@ -1,0 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.basic-form {
+    @apply flex flex-col justify-evenly my-7 bg-white bg-opacity-5 rounded
+}

@@ -1,0 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.countdown-stage {
+    @apply rounded-full text-center pt-2 w-10 h-10
+}
