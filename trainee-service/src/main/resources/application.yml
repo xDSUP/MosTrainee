@@ -4,3 +4,12 @@ server:
 spring:
   application:
     name: trainee-service
+  main:
+    allow-circular-references: true
+
+security:
+  jwt:
+    validity-time-seconds: 3600
+    secret-word: secret
+    header-name: Authorization
+    header-prefix: Bearer
