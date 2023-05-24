@@ -1,9 +1,30 @@
 server:
   port: 8080
-
 spring:
   application:
     name: trainee-service
+
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/mos_test'
+    username: postgres
+    password: 12345
+    driverClassName: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+    showSql: true
+    hibernate:
+      ddl-auto: none
+
+  flyway:
+    enabled: true
+    url: 'jdbc:postgresql://localhost:5432/mos_test'
+    user: postgres
+    password: 12345
+    baseline-on-migrate: true
   main:
     allow-circular-references: true
 
