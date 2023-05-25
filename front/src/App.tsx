@@ -1,14 +1,21 @@
 import React from 'react';
 import './App.css';
 import {LoginRegistrationPage} from "./page/LoginRegistrationPage";
-import {getHelloFromServer} from "./utils/fetchUtils";
+import authStore from "./stores/AuthStore";
+import {observer} from "mobx-react";
+import {MainPage} from "./page/MainPage";
 
-function App() {
-  getHelloFromServer()
+authStore.init();
 
+export const App: React.FC = observer(() => {
+  if (!authStore.isAuthorized) {
+    return <div className="row w-25 mx-auto border-1">
+      <LoginRegistrationPage></LoginRegistrationPage>
+    </div>
+  }
   return (
-    <LoginRegistrationPage/>
+    <MainPage/>
   );
-}
+});
 
 export default App;

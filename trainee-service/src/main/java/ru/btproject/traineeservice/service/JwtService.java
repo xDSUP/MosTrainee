@@ -58,7 +58,7 @@ public class JwtService {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + validitySeconds * 1000))
-                .signWith(SignatureAlgorithm.HS512, secretWord)
+                .signWith(SignatureAlgorithm.HS256, secretWord)
                 .compact();
         log.info("Generated JWT header {} for {}", header, username);
         return header;

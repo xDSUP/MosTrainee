@@ -30,7 +30,7 @@ spring:
 
 security:
   jwt:
-    validity-time-seconds: 3600
+    validity-time-seconds: 9999999
     secret-word: secret
     header-name: Authorization
     header-prefix: Bearer
