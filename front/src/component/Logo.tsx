@@ -7,7 +7,7 @@ export class Logo extends Component {
         return (
             <div className="logo my-10">
                 <img src={moscowImage} alt="moscow" className="mr-3 max-h-11 "/>
-                <h1 className="text-2xl font-bold">ТВОЯ КАРЬЕРА</h1>
+                <h1 className="text-white text-2xl font-bold">ТВОЯ КАРЬЕРА</h1>
             </div>
         );
     }

@@ -1,0 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.fixed-right-block {
+    @apply fixed top-7 right-0 h-screen w-1/6 bg-white p-4
+}

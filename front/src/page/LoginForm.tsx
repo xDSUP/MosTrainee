@@ -6,6 +6,7 @@ import {BasicForm} from "../component/BasicForm";
 import {Button} from "../component/Button";
 import {Input} from "../component/Input";
 import {Logo} from "../component/Logo";
+import authStore from "../stores/AuthStore";
 
 class EmailLoginFormState {
 
@@ -35,6 +36,11 @@ class EmailLoginFormState {
         this.password = password;
     }
 
+    @action
+    signIn() {
+        authStore.signIn(this.email, this.password);
+    }
+
 }
 
 
@@ -57,7 +63,7 @@ class EmailLoginForm extends Component<{}, EmailLoginFormState> {
                 <BasicForm>
                     <Input type="text" value={this.state.email} placeholder="Email" onChange={this.handleEmailChange.bind(this)}/>
                     <Input type="password" value={this.state.password} placeholder="Пароль" onChange={this.handlePasswordChange.bind(this)}/>
-                    <Button disabled={!this.state.isFormValid} text="Войти" type="submit"/>
+                    <Button disabled={!this.state.isFormValid} onClick={() => this.state.signIn()} text="Войти" type="button"/>
                 </BasicForm>
 
                 <div className="flex justify-center">
