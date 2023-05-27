@@ -14,6 +14,6 @@ public interface ParticipantSolutionRepository extends JpaRepository<Participant
     @Query("select p from ParticipantSolution p join fetch p.application a join fetch a.createdBy m join fetch m.organization where p.participant = :partic")
     List<ParticipantSolution> findByPartic(@Param("partic") Participant participant);
 
-    @Query("select p from ParticipantSolution p join fetch p.application a join fetch a.createdBy m join fetch m.organization where p.application = :application")
+    @Query("select p from ParticipantSolution p join fetch p.participant a where p.application = :application")
     List<ParticipantSolution> findByApplication(@Param("application") Application application);
 }

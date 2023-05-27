@@ -5,8 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.btproject.traineeservice.dto.*;
 import ru.btproject.traineeservice.entity.Application;
+import ru.btproject.traineeservice.entity.ParticipantSolution;
 import ru.btproject.traineeservice.service.ApplicationService;
+import ru.btproject.traineeservice.service.MentorService;
+import ru.btproject.traineeservice.service.ParticipantSolutionService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,9 +19,11 @@ import java.util.stream.Collectors;
 public class ApplicationController {
 
     private final ApplicationService applicationService;
+    private final ParticipantSolutionService participantSolutionService;
+    private final MentorService mentorService;
 
-    private static ListApplicationDto getListApplicationDto(Application application) {
-        return ListApplicationDto.builder()
+    private static ApplicationDto getListApplicationDto(Application application) {
+        return ApplicationDto.builder()
                 .id(application.getId())
                 .name(application.getName())
                 .description(application.getDescription())
@@ -38,16 +44,36 @@ public class ApplicationController {
     }
 
     @GetMapping("/api/application/all")
-    public List<ListApplicationDto> getAll() { // для Куратора
+    public List<ApplicationDto> getAll() { // для Куратора
         return applicationService.getAll().stream().map(
                 ApplicationController::getListApplicationDto
         ).toList();
     }
 
     @GetMapping("/api/application/active")
-    public List<ListApplicationDto> getAllActive() {
+    public List<ApplicationDto> getAllActive() {
         return applicationService.getAllActive().stream().map(
                 ApplicationController::getListApplicationDto
         ).toList();
+    }
+
+    @GetMapping("/api/application/solutions/")
+    public List<ParticipantSolutionsForMentorDto> getParticipantSolutionsForApplication() {
+        return mentorService.getCurrentAuthorized().map(mentor -> {
+                    Application application = applicationService.getByMentor(mentor);
+                    List<ParticipantSolution> solutions = participantSolutionService.getByApplication(application);
+                    return solutions.stream().map(solution -> ParticipantSolutionsForMentorDto.builder()
+                            .id(solution.getId())
+                            .status(solution.getStatus().name())
+                            .score(solution.getScore())
+                            .participant(SimpleParticipantDto.builder()
+                                    .id(solution.getParticipant().getId())
+                                    .firstName(solution.getParticipant().getFirstName())
+                                    .lastName(solution.getParticipant().getLastName())
+                                    .middleName(solution.getParticipant().getMiddleName())
+                                    .build())
+                            .build()).toList();
+                })
+                .orElse(Collections.emptyList());
     }
 }

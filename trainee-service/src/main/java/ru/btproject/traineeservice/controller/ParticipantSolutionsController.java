@@ -10,6 +10,7 @@ import ru.btproject.traineeservice.dto.ParticipantSolutionsDto;
 import ru.btproject.traineeservice.entity.Application;
 import ru.btproject.traineeservice.entity.Mentor;
 import ru.btproject.traineeservice.entity.Participant;
+import ru.btproject.traineeservice.entity.ParticipantSolution;
 import ru.btproject.traineeservice.service.ParticipantService;
 import ru.btproject.traineeservice.service.ParticipantSolutionService;
 
@@ -24,33 +25,36 @@ public class ParticipantSolutionsController {
     private final ParticipantService participantService;
     private final ParticipantSolutionService solutionService;
 
+    private static ParticipantSolutionsDto getParticipantSolutionsDto(ParticipantSolution solution) {
+        Application application = solution.getApplication();
+        Mentor mentor = application.getCreatedBy();
+
+        return ParticipantSolutionsDto.builder()
+                .id(solution.getId())
+                .status(solution.getStatus().name())
+                .vacancy(application.getName())
+                .organization(new OrganizationDto(mentor.getOrganization()))
+                .mentor(new ApplicationMentorDto(mentor))
+                .createdAt(solution.getCreatedAt())
+                .build();
+    }
 
     @GetMapping("/api/participant/{participantId}/solution/") // для стажера
     public List<ParticipantSolutionsDto> getSolutions(@PathVariable Long participantId) {
         Optional<Participant> participantOptional = participantService.getByParticId(participantId);
 
         return participantOptional.map(participant -> solutionService.getByPartic(participant).stream().map(
-                solution -> {
-                    Application application = solution.getApplication();
-                    Mentor mentor = application.getCreatedBy();
-
-                    return ParticipantSolutionsDto.builder()
-                            .id(solution.getId())
-                            .status(solution.getStatus().name())
-                            .vacancy(application.getName())
-                            .organization(new OrganizationDto(mentor.getOrganization()))
-                            .mentor(new ApplicationMentorDto(mentor))
-                            .createdAt(solution.getCreatedAt())
-                            .build();
-                }
+                ParticipantSolutionsController::getParticipantSolutionsDto
         ).toList()).orElse(Collections.emptyList());
-
     }
 
     @GetMapping("/api/participant/solution/") // для стажера
     public List<ParticipantSolutionsDto> getSolutions() {
-        // получать текущего парсипанта
-        return null;
+        Optional<Participant> participantOptional = participantService.getCurrentAuthorized();
+
+        return participantOptional.map(participant -> solutionService.getByPartic(participant).stream().map(
+                ParticipantSolutionsController::getParticipantSolutionsDto
+        ).toList()).orElse(Collections.emptyList());
     }
 
 }
