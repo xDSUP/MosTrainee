@@ -1,6 +1,8 @@
 package ru.btproject.traineeservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import ru.btproject.traineeservice.utils.LazyFieldsFilter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -8,36 +10,36 @@ import java.util.Set;
 
 @Entity
 @Table(name = "organization")
-public class Organization implements Serializable
-{
+public class Organization implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supervisor_id")
     private Supervisor supervisor;
 
-    
     @Column(name = "name", nullable = false, columnDefinition = "TEXT")
     private String name;
 
-    
+
     @Column(name = "info", columnDefinition = "TEXT")
     private String info;
 
-    @OneToMany(mappedBy = "organization")
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization")
     private Set<Mentor> mentors = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "organization")
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization")
     private Set<Staff> staff = new LinkedHashSet<>();
 
-    public Set<Staff> getStaff()
-    {
+    public Set<Staff> getStaff() {
         return staff;
     }
 
-    public void setStaff(Set<Staff> staff)
-    {
+    public void setStaff(Set<Staff> staff) {
         this.staff = staff;
     }
 

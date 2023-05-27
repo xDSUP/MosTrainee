@@ -1,6 +1,8 @@
 package ru.btproject.traineeservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import ru.btproject.traineeservice.utils.LazyFieldsFilter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -16,7 +18,6 @@ public class InternshipType implements Serializable
 
     @Column(name = "code", nullable = false, length = 20)
     private String code;
-
     
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
@@ -24,19 +25,19 @@ public class InternshipType implements Serializable
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @OneToMany(mappedBy = "internshipType")
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "internshipType")
     private Set<Participant> participants = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "internshipType")
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "internshipType")
     private Set<Application> applications = new LinkedHashSet<>();
 
-    public Set<Application> getApplications()
-    {
+    public Set<Application> getApplications() {
         return applications;
     }
 
-    public void setApplications(Set<Application> applications)
-    {
+    public void setApplications(Set<Application> applications) {
         this.applications = applications;
     }
 

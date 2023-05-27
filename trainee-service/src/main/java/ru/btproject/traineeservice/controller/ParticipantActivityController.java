@@ -9,6 +9,7 @@ import ru.btproject.traineeservice.entity.ParticActivityHist;
 import ru.btproject.traineeservice.entity.Participant;
 import ru.btproject.traineeservice.service.ParticipantActivityService;
 import ru.btproject.traineeservice.service.ParticipantService;
+import ru.btproject.traineeservice.service.StageSchedulerService;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ParticipantActivityController {
 
+    private final StageSchedulerService stageSchedulerService;
     private final ParticipantActivityService participantActivityService;
     private final ParticipantService participantService;
 
@@ -32,5 +34,4 @@ public class ParticipantActivityController {
         Optional<Participant> byParticId = participantService.getByParticId(participantId);
         return participantActivityService.getByPartic(byParticId.get());
     }
-
 }

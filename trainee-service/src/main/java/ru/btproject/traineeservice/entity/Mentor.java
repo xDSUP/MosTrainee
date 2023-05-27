@@ -1,6 +1,8 @@
 package ru.btproject.traineeservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import ru.btproject.traineeservice.utils.LazyFieldsFilter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -8,20 +10,21 @@ import java.util.Set;
 
 @Entity
 @Table(name = "mentors")
-public class Mentor implements Serializable
-{
+public class Mentor implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
-    
+
     @Column(name = "last_name", nullable = false, columnDefinition = "TEXT")
     private String lastName;
 
-    
+
     @Column(name = "first_name", nullable = false, columnDefinition = "TEXT")
     private String firstName;
 
@@ -33,7 +36,7 @@ public class Mentor implements Serializable
     @Column(name = "position", nullable = false, columnDefinition = "TEXT")
     private String position;
 
-    
+
     @Column(name = "email", nullable = false, columnDefinition = "TEXT")
     private String email;
 
@@ -43,19 +46,19 @@ public class Mentor implements Serializable
     @Column(name = "is_qualified")
     private Boolean isQualified;
 
-    @OneToMany(mappedBy = "mentor")
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mentor")
     private Set<Review> reviews = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "mentor")
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mentor")
     private Set<LinkTagsToMentor> linkTagsToMentors = new LinkedHashSet<>();
 
-    public Set<LinkTagsToMentor> getLinkTagsToMentors()
-    {
+    public Set<LinkTagsToMentor> getLinkTagsToMentors() {
         return linkTagsToMentors;
     }
 
-    public void setLinkTagsToMentors(Set<LinkTagsToMentor> linkTagsToMentors)
-    {
+    public void setLinkTagsToMentors(Set<LinkTagsToMentor> linkTagsToMentors) {
         this.linkTagsToMentors = linkTagsToMentors;
     }
 

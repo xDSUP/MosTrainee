@@ -1,6 +1,10 @@
 package ru.btproject.traineeservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import ru.btproject.traineeservice.utils.LazyFieldsFilter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -8,31 +12,36 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "application")
-public class Application implements Serializable
-{
+public class Application implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "created_by")
-    private Staff createdBy;
 
-    
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "created_by")
+    private Mentor createdBy;
+
     @Column(name = "name", nullable = false, columnDefinition = "TEXT")
     private String name;
 
-    
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
+
+    @Column(name = "requirement", nullable = false, columnDefinition = "TEXT")
+    private String requirement;
 
     @Column(name = "work_time", nullable = false, length = 20)
     private String workTime;
 
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "internship_type_id", nullable = false)
     private InternshipType internshipType;
 
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "branch_id", nullable = false)
     private Branch branch;
@@ -49,153 +58,10 @@ public class Application implements Serializable
     @Column(name = "created_at", nullable = false)
     private LocalDate createdAt;
 
-    @Column(name = "mentor_id", nullable = false)
-    private Long mentorId;
-
     @Column(name = "is_active")
     private Boolean isActive;
 
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
     @OneToMany(mappedBy = "application")
     private Set<Attachment> attachments = new LinkedHashSet<>();
-
-    public Set<Attachment> getAttachments()
-    {
-        return attachments;
-    }
-
-    public void setAttachments(Set<Attachment> attachments)
-    {
-        this.attachments = attachments;
-    }
-
-    public Boolean getIsActive()
-    {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean isActive)
-    {
-        this.isActive = isActive;
-    }
-
-    public Long getMentorId()
-    {
-        return mentorId;
-    }
-
-    public void setMentorId(Long mentorId)
-    {
-        this.mentorId = mentorId;
-    }
-
-    public LocalDate getCreatedAt()
-    {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDate createdAt)
-    {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDate getEndDate()
-    {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate)
-    {
-        this.endDate = endDate;
-    }
-
-    public LocalDate getStartDate()
-    {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate)
-    {
-        this.startDate = startDate;
-    }
-
-    public String getType()
-    {
-        return type;
-    }
-
-    public void setType(String type)
-    {
-        this.type = type;
-    }
-
-    public Branch getBranch()
-    {
-        return branch;
-    }
-
-    public void setBranch(Branch branch)
-    {
-        this.branch = branch;
-    }
-
-    public InternshipType getInternshipType()
-    {
-        return internshipType;
-    }
-
-    public void setInternshipType(InternshipType internshipType)
-    {
-        this.internshipType = internshipType;
-    }
-
-    public String getWorkTime()
-    {
-        return workTime;
-    }
-
-    public void setWorkTime(String workTime)
-    {
-        this.workTime = workTime;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public Staff getCreatedBy()
-    {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Staff createdBy)
-    {
-        this.createdBy = createdBy;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
 }
