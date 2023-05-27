@@ -1,8 +1,10 @@
 package ru.btproject.traineeservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.btproject.traineeservice.utils.LazyFieldsFilter;
 
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -55,10 +57,12 @@ public class Participant implements Serializable
     @Column(name = "status")
     private ParticipantStatus status;
 
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "internship_id")
     private InternshipType internshipType;
 
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
