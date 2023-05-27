@@ -5,6 +5,7 @@ create table application
             primary key,
     name               text        not null,
     description        text        not null,
+    requirement        text        not null,
     work_time          varchar(20) not null,
     internship_type_id bigint      not null
         constraint application_int_type_fk
@@ -17,9 +18,8 @@ create table application
     end_date           date        not null,
     created_by         bigint      not null
         constraint application_sid_fk
-            references staff,
+            references mentors,
     created_at         date        not null,
-    mentor_id          bigint      not null,
     is_active          boolean
 );
 

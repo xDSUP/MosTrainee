@@ -3,8 +3,6 @@ package ru.btproject.traineeservice.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "staff")
@@ -37,19 +35,6 @@ public class Staff implements Serializable
     
     @Column(name = "middle_name", columnDefinition = "TEXT")
     private String middleName;
-
-    @OneToMany(mappedBy = "createdBy")
-    private Set<Application> applications = new LinkedHashSet<>();
-
-    public Set<Application> getApplications()
-    {
-        return applications;
-    }
-
-    public void setApplications(Set<Application> applications)
-    {
-        this.applications = applications;
-    }
 
     public String getMiddleName()
     {

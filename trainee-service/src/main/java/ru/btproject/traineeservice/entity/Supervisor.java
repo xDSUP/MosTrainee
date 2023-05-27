@@ -1,6 +1,8 @@
 package ru.btproject.traineeservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import ru.btproject.traineeservice.utils.LazyFieldsFilter;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -22,27 +24,26 @@ public class Supervisor implements Serializable
     @Column(name = "first_name", nullable = false, columnDefinition = "TEXT")
     private String firstName;
 
-    
+
     @Column(name = "middle_name", columnDefinition = "TEXT")
     private String middleName;
 
-    
+
     @Column(name = "email", nullable = false, columnDefinition = "TEXT")
     private String email;
 
     @Column(name = "phone", length = 10)
     private String phone;
 
-    @OneToMany(mappedBy = "supervisor")
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "supervisor")
     private Set<Organization> organizations = new LinkedHashSet<>();
 
-    public Set<Organization> getOrganizations()
-    {
+    public Set<Organization> getOrganizations() {
         return organizations;
     }
 
-    public void setOrganizations(Set<Organization> organizations)
-    {
+    public void setOrganizations(Set<Organization> organizations) {
         this.organizations = organizations;
     }
 
