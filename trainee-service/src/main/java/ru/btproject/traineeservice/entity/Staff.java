@@ -1,14 +1,6 @@
 package ru.btproject.traineeservice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -25,7 +17,6 @@ public class Staff implements Serializable
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
-    @Lob
     @Column(name = "email", nullable = false, columnDefinition = "TEXT")
     private String email;
 
@@ -35,15 +26,15 @@ public class Staff implements Serializable
     @Column(name = "code", nullable = false, length = 20)
     private String code;
 
-    @Lob
+    
     @Column(name = "last_name", nullable = false, columnDefinition = "TEXT")
     private String lastName;
 
-    @Lob
+    
     @Column(name = "first_name", nullable = false, columnDefinition = "TEXT")
     private String firstName;
 
-    @Lob
+    
     @Column(name = "middle_name", columnDefinition = "TEXT")
     private String middleName;
 

@@ -1,14 +1,6 @@
 package ru.btproject.traineeservice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -26,11 +18,11 @@ public class Application implements Serializable
     @JoinColumn(name = "created_by")
     private Staff createdBy;
 
-    @Lob
+    
     @Column(name = "name", nullable = false, columnDefinition = "TEXT")
     private String name;
 
-    @Lob
+    
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 

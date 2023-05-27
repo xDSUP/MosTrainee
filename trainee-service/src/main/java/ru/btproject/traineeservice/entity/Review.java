@@ -1,13 +1,6 @@
 package ru.btproject.traineeservice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -22,7 +15,7 @@ public class Review implements Serializable
     @JoinColumn(name = "mentor_id")
     private Mentor mentor;
 
-    @Lob
+    
     @Column(name = "comment", nullable = false, columnDefinition = "TEXT")
     private String comment;
 

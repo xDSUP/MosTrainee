@@ -1,11 +1,6 @@
 package ru.btproject.traineeservice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -22,7 +17,7 @@ public class InternshipType implements Serializable
     @Column(name = "code", nullable = false, length = 20)
     private String code;
 
-    @Lob
+    
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
