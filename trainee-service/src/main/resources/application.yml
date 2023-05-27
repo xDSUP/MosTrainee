@@ -28,9 +28,16 @@ spring:
   main:
     allow-circular-references: true
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
 security:
   jwt:
     validity-time-seconds: 9999999
     secret-word: secret
     header-name: Authorization
     header-prefix: Bearer
+app:
+  stage_sync:
+    enable: true

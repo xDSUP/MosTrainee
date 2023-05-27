@@ -1,11 +1,6 @@
 package ru.btproject.traineeservice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -19,11 +14,11 @@ public class Address implements Serializable
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Lob
+    
     @Column(name = "city", nullable = false, columnDefinition = "TEXT")
     private String city;
 
-    @Lob
+    
     @Column(name = "street", nullable = false, columnDefinition = "TEXT")
     private String street;
 
@@ -33,7 +28,7 @@ public class Address implements Serializable
     @Column(name = "flat", nullable = false, length = 10)
     private String flat;
 
-    @Lob
+    
     @Column(name = "email", nullable = false, columnDefinition = "TEXT")
     private String email;
 

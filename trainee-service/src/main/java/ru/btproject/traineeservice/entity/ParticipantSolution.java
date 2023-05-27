@@ -1,14 +1,6 @@
 package ru.btproject.traineeservice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Index;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -36,7 +28,7 @@ public class ParticipantSolution implements Serializable
     @Column(name = "solution", nullable = false)
     private byte[] solution;
 
-    @Lob
+    
     @Column(name = "comment", columnDefinition = "TEXT")
     private String comment;
 

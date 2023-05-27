@@ -1,15 +1,18 @@
 package ru.btproject.traineeservice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Index;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "stage_scheduler", indexes = {
         @Index(name = "stage_scheduler_id_uindex", columnList = "id", unique = true),
@@ -24,7 +27,6 @@ public class StageScheduler implements Serializable
     @Column(name = "code", nullable = false, length = 20)
     private String code;
 
-    @Lob
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
@@ -36,64 +38,4 @@ public class StageScheduler implements Serializable
 
     @Column(name = "active", nullable = false)
     private Boolean active = false;
-
-    public Boolean getActive()
-    {
-        return active;
-    }
-
-    public void setActive(Boolean active)
-    {
-        this.active = active;
-    }
-
-    public LocalDate getEndDate()
-    {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate)
-    {
-        this.endDate = endDate;
-    }
-
-    public LocalDate getStartDate()
-    {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate)
-    {
-        this.startDate = startDate;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-
-    public String getCode()
-    {
-        return code;
-    }
-
-    public void setCode(String code)
-    {
-        this.code = code;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
 }

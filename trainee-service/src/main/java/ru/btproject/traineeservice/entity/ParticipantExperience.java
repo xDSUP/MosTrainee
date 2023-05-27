@@ -1,14 +1,6 @@
 package ru.btproject.traineeservice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Index;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -27,7 +19,7 @@ public class ParticipantExperience implements Serializable
     @JoinColumn(name = "participant_id", nullable = false)
     private Participant participant;
 
-    @Lob
+    
     @Column(name = "work_name", nullable = false, columnDefinition = "TEXT")
     private String workName;
 
@@ -40,7 +32,7 @@ public class ParticipantExperience implements Serializable
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @Lob
+    
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
