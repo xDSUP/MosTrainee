@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Data
 @Builder
-public class ListApplicationDto {
+public class ApplicationDto {
     private Long id;
     private String name;
     private String description;

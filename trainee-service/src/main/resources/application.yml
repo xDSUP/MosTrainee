@@ -7,7 +7,7 @@ spring:
   datasource:
     url: 'jdbc:postgresql://localhost:5432/mos_test'
     username: postgres
-    password: admin
+    password: 12345
     driverClassName: org.postgresql.Driver
 
   jpa:
@@ -23,7 +23,7 @@ spring:
     enabled: true
     url: 'jdbc:postgresql://localhost:5432/mos_test'
     user: postgres
-    password: admin
+    password: 12345
     baseline-on-migrate: true
 
   main:

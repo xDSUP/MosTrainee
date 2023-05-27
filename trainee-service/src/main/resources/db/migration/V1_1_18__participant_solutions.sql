@@ -1,16 +1,17 @@
 create table participant_solutions
 (
-    id             bigint not null
+    id             bigint      not null
         constraint participant_solutions_pk
             primary key,
-    participant_id bigint not null
+    participant_id bigint      not null
         constraint participant_solutions_pid_fk
             references participant,
-    application_id bigint not null
+    application_id bigint      not null
         constraint participant_solutions_appid_fk
             references application,
-    solution       bytea  not null,
+    solution       bytea       not null,
     comment        text,
+    status         varchar(10) not null,
     created_at     date,
     score          numeric
 );

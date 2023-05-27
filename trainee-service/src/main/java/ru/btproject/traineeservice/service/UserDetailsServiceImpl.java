@@ -16,15 +16,16 @@ import java.util.Collections;
 
 @Service
 @AllArgsConstructor
-public class UserDetailsServiceImpl implements UserDetailsService
-{
-
+public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
+    public User getUser(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
-    {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = getUser(username);
 
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getUsername())

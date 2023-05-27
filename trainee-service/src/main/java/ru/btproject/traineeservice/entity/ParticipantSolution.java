@@ -1,6 +1,7 @@
 package ru.btproject.traineeservice.entity;
 
 import jakarta.persistence.*;
+import ru.btproject.traineeservice.service.ParticipantSolutionStatus;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -28,7 +29,10 @@ public class ParticipantSolution implements Serializable
     @Column(name = "solution", nullable = false)
     private byte[] solution;
 
-    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", length = 10)
+    private ParticipantSolutionStatus status;
+
     @Column(name = "comment", columnDefinition = "TEXT")
     private String comment;
 
@@ -98,13 +102,19 @@ public class ParticipantSolution implements Serializable
         this.participant = participant;
     }
 
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public ParticipantSolutionStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ParticipantSolutionStatus status) {
+        this.status = status;
     }
 }
