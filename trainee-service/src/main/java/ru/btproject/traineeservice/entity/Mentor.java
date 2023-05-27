@@ -2,6 +2,10 @@ package ru.btproject.traineeservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import ru.btproject.traineeservice.utils.LazyFieldsFilter;
 
 import java.io.Serializable;
@@ -10,9 +14,15 @@ import java.util.Set;
 
 @Entity
 @Table(name = "mentors")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Mentor implements Serializable {
+
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
@@ -53,113 +63,4 @@ public class Mentor implements Serializable {
     @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mentor")
     private Set<LinkTagsToMentor> linkTagsToMentors = new LinkedHashSet<>();
-
-    public Set<LinkTagsToMentor> getLinkTagsToMentors() {
-        return linkTagsToMentors;
-    }
-
-    public void setLinkTagsToMentors(Set<LinkTagsToMentor> linkTagsToMentors) {
-        this.linkTagsToMentors = linkTagsToMentors;
-    }
-
-    public Set<Review> getReviews()
-    {
-        return reviews;
-    }
-
-    public void setReviews(Set<Review> reviews)
-    {
-        this.reviews = reviews;
-    }
-
-    public Boolean getIsQualified()
-    {
-        return isQualified;
-    }
-
-    public void setIsQualified(Boolean isQualified)
-    {
-        this.isQualified = isQualified;
-    }
-
-    public Double getRating()
-    {
-        return rating;
-    }
-
-    public void setRating(Double rating)
-    {
-        this.rating = rating;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
-
-    public String getPosition()
-    {
-        return position;
-    }
-
-    public void setPosition(String position)
-    {
-        this.position = position;
-    }
-
-    public String getMiddleName()
-    {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName)
-    {
-        this.middleName = middleName;
-    }
-
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
-
-    public Organization getOrganization()
-    {
-        return organization;
-    }
-
-    public void setOrganization(Organization organization)
-    {
-        this.organization = organization;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
 }

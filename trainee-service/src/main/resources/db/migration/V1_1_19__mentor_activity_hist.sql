@@ -1,4 +1,4 @@
-create table mentor_activity_his
+create table mentor_activity_hist
 (
     id          bigint not null
         constraint mentor_activity_his_pk
@@ -14,8 +14,8 @@ create table mentor_activity_his
 );
 
 create index mentor_activity_his_act_id_idx
-    on mentor_activity_his (activity_id);
+    on mentor_activity_hist (activity_id);
 
 create index mentor_activity_his_mnt_id_idx
-    on mentor_activity_his (mentor_id);
+    on mentor_activity_hist (mentor_id);
 

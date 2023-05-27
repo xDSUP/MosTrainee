@@ -7,7 +7,7 @@ spring:
   datasource:
     url: 'jdbc:postgresql://localhost:5432/mos_test'
     username: postgres
-    password: 12345
+    password: admin
     driverClassName: org.postgresql.Driver
 
   jpa:
@@ -17,14 +17,15 @@ spring:
     database: postgresql
     showSql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
 
   flyway:
     enabled: true
     url: 'jdbc:postgresql://localhost:5432/mos_test'
     user: postgres
-    password: 12345
+    password: admin
     baseline-on-migrate: true
+
   main:
     allow-circular-references: true
 
