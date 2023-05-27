@@ -1,7 +1,6 @@
 package ru.btproject.traineeservice.entity;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,12 +11,13 @@ import java.sql.Date;
 @Setter
 @Getter
 @Entity
-@EqualsAndHashCode
 @Table(name = "participant")
-public class Participant implements Serializable {
+public class Participant implements Serializable
+{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
     @Basic
     @Column(name = "last_name")

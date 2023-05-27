@@ -28,6 +28,19 @@ VALUES (1, 2, 'WEBINAR', 'WB001', 'Введение в использовани�
        (8, 6, 'INTERVIEW', 'Собес с наставником', 'Просто поговорите о жизни и ценностях',
         'https://www.mosttrainee.com/interviews/senior-developer', '2022-01-06 11:00:00', '2022-01-06 12:00:00');
 
+
+insert into user_creds (id, username, password, user_type)
+values (1, 'supervisor1', '$2a$12$NpTpjIoxBO2.u987gpbC/.SRqFwoTK8TAiMpQ40.g9dAAUCUDwxFK', 'SUPERVISOR');
+
+insert into user_creds (id, username, password, user_type)
+values (2, 'mentor1', '$2a$12$NpTpjIoxBO2.u987gpbC/.SRqFwoTK8TAiMpQ40.g9dAAUCUDwxFK', 'MENTOR');
+insert into user_creds (id, username, password, user_type)
+values (3, 'mentor2', '$2a$12$NpTpjIoxBO2.u987gpbC/.SRqFwoTK8TAiMpQ40.g9dAAUCUDwxFK', 'MENTOR');
+insert into user_creds (id, username, password, user_type)
+values (4, 'mentor3', '$2a$12$NpTpjIoxBO2.u987gpbC/.SRqFwoTK8TAiMpQ40.g9dAAUCUDwxFK', 'MENTOR');
+insert into user_creds (id, username, password, user_type)
+values (5, 'mentor4', '$2a$12$NpTpjIoxBO2.u987gpbC/.SRqFwoTK8TAiMpQ40.g9dAAUCUDwxFK', 'MENTOR');
+
 INSERT INTO supervisors (id, last_name, first_name, middle_name, email, phone)
 VALUES (1, 'Smith', 'John', 'James', 'jsmith@email.com', '555-1234');
 
@@ -37,13 +50,13 @@ INSERT INTO organization (id, name, info, supervisor_id)
 VALUES (2, 'XYZ Corp.', 'A company that provides consulting services for small businesses.', 1);
 
 INSERT INTO mentors (id, last_name, first_name, middle_name, organization_id, position, email, rating, is_qualified)
-VALUES (1, 'Smith', 'John', 'Doe', 1, 'Manager', 'jsmith@abcinc.com', 4.5, true);
+VALUES (2, 'Smith', 'John', 'Doe', 1, 'Manager', 'jsmith@abcinc.com', 4.5, true);
 INSERT INTO mentors (id, last_name, first_name, middle_name, organization_id, position, email, rating, is_qualified)
-VALUES (2, 'Johnson', 'Jane', '', 1, 'Senior Engineer', 'jjohnson@abcinc.com', 4.2, true);
+VALUES (3, 'Johnson', 'Jane', '', 1, 'Senior Engineer', 'jjohnson@abcinc.com', 4.2, true);
 INSERT INTO mentors (id, last_name, first_name, middle_name, organization_id, position, email, rating, is_qualified)
-VALUES (3, 'Garcia', 'Maria', 'Elena', 2, 'Consultant', 'mgarcia@xyzcorp.com', 4.8, false);
+VALUES (4, 'Garcia', 'Maria', 'Elena', 2, 'Consultant', 'mgarcia@xyzcorp.com', 4.8, false);
 INSERT INTO mentors (id, last_name, first_name, middle_name, organization_id, position, email, rating, is_qualified)
-VALUES (4, 'Lee', 'David', '', 2, 'Consultant', 'dlee@xyzcorp.com', 4.0, true);
+VALUES (5, 'Lee', 'David', '', 2, 'Consultant', 'dlee@xyzcorp.com', 4.0, true);
 
 
 INSERT INTO address (id, city, street, building, flat, email, phone)
@@ -64,13 +77,13 @@ VALUES (2, 'HR', 'Human Resources Internship', true);
 INSERT INTO application (id, name, description, requirement, work_time, internship_type_id, branch_id, type, start_date,
                          end_date, created_by, created_at, is_active)
 VALUES (1, 'IT Internship Application', 'This is an application for an Information Technology Internship',
-        'Requirements: Basic programming knowledge', 'Full-time', 1, 1, 'ON_SITE', '2023-01-01', '2023-06-23', 1,
+        'Requirements: Basic programming knowledge', 'Full-time', 1, 1, 'ON_SITE', '2023-01-01', '2023-06-23', 2,
         '2023-05-01', true);
 
 INSERT INTO application (id, name, description, requirement, work_time, internship_type_id, branch_id, type, start_date,
                          end_date, created_by, created_at, is_active)
 VALUES (2, 'HR Internship Application', 'This is an application for a Human Resources Internship',
-        'Requirements: Good communication skills', 'Part-time', 2, 2, 'REMOTE', '2023-02-01', '2023-04-30', 2,
+        'Requirements: Good communication skills', 'Part-time', 2, 2, 'REMOTE', '2023-02-01', '2023-04-30', 3,
         '2023-05-01', true);
 
 INSERT INTO application (id, name, description, requirement, work_time, internship_type_id, branch_id, type, start_date,

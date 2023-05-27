@@ -7,7 +7,7 @@ export default class AxiosUtils {
     static get<T>(url: string): Promise<T | void> {
 
         return axios
-            .create({headers: {Authorization: `Bearer ${localStorage.getItem(LocalStorageKeyNames.token)}`}})
+            .create({headers: {Authorization: `${localStorage.getItem(LocalStorageKeyNames.token)}`}})
             .get<T>(url).then(r => r.data)
             .catch(error => {
                 alert(error.message);
@@ -20,7 +20,7 @@ export default class AxiosUtils {
     static post<T>(url: string, data: T): Promise<T | void> {
 
         return axios
-            .create({headers: {Authorization: `Bearer ${localStorage.getItem(LocalStorageKeyNames.token)}`}})
+            .create({headers: {Authorization: `${localStorage.getItem(LocalStorageKeyNames.token)}`}})
             .post<T>(url).then(r => r.data)
             .catch(error => {
                 alert(error.message);

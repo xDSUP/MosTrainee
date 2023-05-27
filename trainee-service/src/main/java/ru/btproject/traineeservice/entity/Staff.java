@@ -1,16 +1,26 @@
 package ru.btproject.traineeservice.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "staff")
 public class Staff implements Serializable
 {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
     private Organization organization;
@@ -35,85 +45,5 @@ public class Staff implements Serializable
     
     @Column(name = "middle_name", columnDefinition = "TEXT")
     private String middleName;
-
-    public String getMiddleName()
-    {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName)
-    {
-        this.middleName = middleName;
-    }
-
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
-
-    public String getCode()
-    {
-        return code;
-    }
-
-    public void setCode(String code)
-    {
-        this.code = code;
-    }
-
-    public String getPhone()
-    {
-        return phone;
-    }
-
-    public void setPhone(String phone)
-    {
-        this.phone = phone;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
-
-    public Organization getOrganization()
-    {
-        return organization;
-    }
-
-    public void setOrganization(Organization organization)
-    {
-        this.organization = organization;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
 
 }
