@@ -139,7 +139,6 @@ export class InternshipTable extends Component<{}, InternshipTableState> {
     componentDidMount() {
         AxiosUtils.get<Solution[]>(Urls.serverUrl + "/api/participant/solution/")
             .then(r => {
-                console.log(r);
                 this.state.setApplications(r as Solution[])
             })
     }

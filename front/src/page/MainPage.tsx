@@ -19,7 +19,7 @@ export class MainPage extends Component {
                 <LeftMainMenu/>
                 <Routes>
                     <Route
-                        path="/center"
+                        path="/partic/center"
                         element={
                         <ContentPage>
                             <MainContent>
@@ -34,7 +34,7 @@ export class MainPage extends Component {
                     />
 
                     <Route
-                        path="/trainee"
+                        path="/supervisor/trainee"
                         element={
                         <ContentPage>
                             <MainContent>
@@ -47,7 +47,7 @@ export class MainPage extends Component {
                     />
 
                     <Route
-                        path="/internship"
+                        path="/mentor/internship"
                         element={
                             <ContentPage>
                                 <MainContent>

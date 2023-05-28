@@ -98,7 +98,6 @@ export class CandidatesTable extends Component<{}, CandidatesTableState> {
     componentDidMount() {
         AxiosUtils.get<Participant[]>(Urls.serverUrl + "/api/participant/all")
             .then(r => {
-                console.log(r);
                 this.state.setSolutions(r as Participant[])
             })
     }

@@ -44,9 +44,7 @@ class RegistrationFormState {
     }
     @action
     incrementStage() {
-        console.log('!')
         this.stage++;
-        console.log(this.stage);
     }
 
     @computed
@@ -62,11 +60,6 @@ export class RegistrationForm extends Component<{className?: string}> {
 
     handleIncrementStage(event: any) {
         this.state.incrementStage();
-    }
-
-    handleInputChange(event: any) {
-        console.log(event.target.name);
-        console.log(event.target.value);
     }
 
     render() {
@@ -94,9 +87,9 @@ export class RegistrationForm extends Component<{className?: string}> {
                 <Countdown  stagesSize={3} activeStage={this.state.currentStage}/>
 
                 <BasicForm className="max-w-sm mx-auto">
-                    {stage === 1 && <Input type="text" placeholder="Фамилия" value={this.state.surname} onChange={this.handleInputChange.bind(this)}/>}
-                    {stage === 1 && <Input type="text" placeholder="Имя" value={this.state.name} onChange={this.handleInputChange.bind(this)}/>}
-                    {stage === 1 && <Input type="text" placeholder="Отчество" value={this.state.lastname} onChange={this.handleInputChange.bind(this)}/>}
+                    {stage === 1 && <Input type="text" placeholder="Фамилия" value={this.state.surname} />}
+                    {stage === 1 && <Input type="text" placeholder="Имя" value={this.state.name} />}
+                    {stage === 1 && <Input type="text" placeholder="Отчество" value={this.state.lastname} />}
                     {stage === 1 && <Button type="button" onClick={this.handleIncrementStage.bind(this)} text="Далее" />}
                     {stage === 1 && <YesNoRadio question="Гражданство РФ"/>}
 
