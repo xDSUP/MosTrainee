@@ -8,6 +8,7 @@ import ru.btproject.traineeservice.entity.StageScheduler;
 import ru.btproject.traineeservice.repository.StageSchedulerRepository;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,11 +29,13 @@ public class StageSchedulerService {
     }
 
     public List<StageScheduler> getAllStages() {
-        return repository.findAll();
+        return repository.findAll().stream().sorted(Comparator.comparing(StageScheduler::getId)).toList();
     }
 
     public List<StageScheduler> getAllStagesForCandidate() {
-        return repository.findAll().stream().filter(stage -> !stage.getCode().contains("INTERNSHIP_")).toList();
+        return repository.findAll().stream()
+                .sorted(Comparator.comparing(StageScheduler::getId))
+                .filter(stage -> !stage.getCode().contains("INTERNSHIP_")).toList();
     }
 
     @Transactional

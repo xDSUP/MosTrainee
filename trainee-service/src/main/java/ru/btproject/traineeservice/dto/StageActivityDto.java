@@ -1,6 +1,5 @@
 package ru.btproject.traineeservice.dto;
 
-import lombok.Builder;
 import lombok.Data;
 import ru.btproject.traineeservice.entity.ActivityType;
 import ru.btproject.traineeservice.entity.StageActivity;
@@ -8,7 +7,6 @@ import ru.btproject.traineeservice.entity.StageActivity;
 import java.time.LocalDateTime;
 
 @Data
-@Builder
 public class StageActivityDto {
     private Long id;
     private Long stageId;
