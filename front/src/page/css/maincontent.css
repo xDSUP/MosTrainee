@@ -3,5 +3,6 @@
 @import 'tailwindcss/utilities';
 
 .main-content {
-    @apply h-screen pl-5 pt-10 bg-gray-200 w-10/12 pr-16 rounded-tl-[70px]
+    @apply pl-5 pt-10 bg-gray-200 w-10/12 pr-16 rounded-tl-[70px];
+    height: max(100%, 100vh);
 }
