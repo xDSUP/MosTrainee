@@ -11,6 +11,7 @@ import {CandidatesTable} from "../component/CandidatesTable";
 import {ContentPage} from "./ContentPage";
 import {MentorInternshipPage} from "./MentorInternshipPage";
 import {CandidateProgress} from "../component/CandidateProgress";
+import {Calendar} from "../component/Calendar";
 
 @observer
 export class MainPage extends Component {
@@ -25,6 +26,7 @@ export class MainPage extends Component {
                         <ContentPage>
                             <MainContent>
                                 <CandidateProgress/>
+                                <Calendar/>
                                 <InternshipTable/>
                             </MainContent>
                             <RightBlock>

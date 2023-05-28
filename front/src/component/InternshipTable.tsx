@@ -92,7 +92,7 @@ export class InternshipTablePreHeader extends Component<{state: InternshipTableS
             <div className="flex flex-row justify-between mb-3">
 
                 <div className="flex flex-col">
-                    <span className="text-black text-3xl font-bold">Стажёры</span>
+                    <span className="text-black text-3xl font-bold">Отклики на стажировки</span>
                     <span>Выбери до 24 июня</span>
                 </div>
 
