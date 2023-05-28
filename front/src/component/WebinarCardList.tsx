@@ -25,7 +25,6 @@ export class WebinarCardList extends Component<{}, WebinarCardListState> {
     componentDidMount() {
         AxiosUtils.get<Activity[]>(Urls.serverUrl + "/api/activity/all")
             .then(activities => {
-                console.log(activities)
                 this.state.setWebinars(activities as Activity[]);
             });
     }
