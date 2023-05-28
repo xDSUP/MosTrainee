@@ -145,7 +145,7 @@ export class InternshipForMentorTable extends Component<{}, InternshipForMentorT
 
     render() {
         return (
-            <div className="shadow-xl w-full bg-white rounded-[10px] p-3 text-left">
+            <div className="shadow-xl w-full bg-white rounded-[10px] p-3 text-left mt-6">
                 <InternshipForMentorTablePreHeader state={this.state}/>
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="border-b border-t border-gray-300">

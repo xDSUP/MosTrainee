@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.btproject.traineeservice.dto.*;
 import ru.btproject.traineeservice.entity.Application;
+import ru.btproject.traineeservice.entity.Mentor;
 import ru.btproject.traineeservice.entity.ParticipantSolution;
 import ru.btproject.traineeservice.service.ApplicationService;
 import ru.btproject.traineeservice.service.MentorService;
@@ -48,6 +49,14 @@ public class ApplicationController {
         return applicationService.getAll().stream().map(
                 ApplicationController::getListApplicationDto
         ).toList();
+    }
+
+    @GetMapping("/api/application/for-current-mentor")
+    public ApplicationDto getGetForCurrentMentor() { // для Куратора
+
+        Mentor mentor = mentorService.getCurrentAuthorized().get();
+        Application application = applicationService.getByMentor(mentor);
+        return getListApplicationDto(application);
     }
 
     @GetMapping("/api/application/active")
