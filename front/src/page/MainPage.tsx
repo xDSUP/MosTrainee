@@ -9,6 +9,7 @@ import {CurrentDateHeader} from "../component/CurrentDateHeader";
 import {WebinarCardList} from "../component/WebinarCardList";
 import {CandidatesTable} from "../component/CandidatesTable";
 import {ContentPage} from "./ContentPage";
+import {InternshipForMentorTable} from "../component/InternshipForMentorTable";
 
 @observer
 export class MainPage extends Component {
@@ -43,6 +44,19 @@ export class MainPage extends Component {
                             </RightBlock>
                         </ContentPage>
                     }
+                    />
+
+                    <Route
+                        path="/internship"
+                        element={
+                            <ContentPage>
+                                <MainContent>
+                                    <InternshipForMentorTable/>
+                                </MainContent>
+                                <RightBlock>
+                                </RightBlock>
+                            </ContentPage>
+                        }
                     />
                 </Routes>
             </BrowserRouter>
