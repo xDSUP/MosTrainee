@@ -1,0 +1,7 @@
+export enum UserType {
+    PARTICIPANT = "PARTICIPANT",
+    MENTOR = "MENTOR",
+    SUPERVISOR = "SUPERVISOR",
+    STAFF = "STAFF",
+    UNDEFINED = "UNDEFINED",
+}

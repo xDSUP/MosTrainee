@@ -10,4 +10,7 @@ public class SimpleParticipantDto {
     private String lastName;
     private String firstName;
     private String middleName;
+    private String educationType;
+    private String rating;
+    private String status;
 }

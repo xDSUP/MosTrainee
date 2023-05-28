@@ -41,6 +41,13 @@ export class LeftMainMenu extends Component {
                             </NavLink>
                         </li>
                         <li>
+                            <NavLink to="/trainee">
+                                {({isActive, isPending}) =>
+                                    <MenuSpan isActive={isActive} text="Стажёры" icon={Work}/>
+                                }
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink to="/achievements">
                                 {({isActive, isPending}) =>
                                     <MenuSpan isActive={isActive} text="Достижения" icon={Award}/>

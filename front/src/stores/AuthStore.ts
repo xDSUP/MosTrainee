@@ -4,14 +4,18 @@ import {getContextPath} from "../utils/SystemUtils";
 import {LoginRequest} from "../dto/LoginRequest";
 import {LoginResponse} from "../dto/LoginResponse";
 import LocalStorageKeyNames from "../utils/LocalStorageKeyNames";
+import {UserType} from "../dto/UserType";
 
 class AuthStore {
 
     @observable
     isAuthorized: boolean;
+    @observable
+    userType: UserType;
 
     constructor() {
         this.isAuthorized = false;
+        this.userType = UserType.UNDEFINED;
         makeAutoObservable(this);
     }
 
@@ -28,6 +32,9 @@ class AuthStore {
             .catch(error => alert(error.message))
             .then(r  => {
                 this.isAuthorized = true;
+                this.userType = (r as LoginResponse).userType;
+
+                console.log(this);
                 localStorage.setItem(LocalStorageKeyNames.token, (r as LoginResponse).token);
             });
     }
