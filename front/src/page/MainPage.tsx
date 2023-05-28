@@ -10,6 +10,7 @@ import {WebinarCardList} from "../component/WebinarCardList";
 import {CandidatesTable} from "../component/CandidatesTable";
 import {ContentPage} from "./ContentPage";
 import {InternshipForMentorTable} from "../component/InternshipForMentorTable";
+import {CandidateProgress} from "../component/CandidateProgress";
 
 @observer
 export class MainPage extends Component {
@@ -23,6 +24,7 @@ export class MainPage extends Component {
                         element={
                         <ContentPage>
                             <MainContent>
+                                <CandidateProgress/>
                                 <InternshipTable/>
                             </MainContent>
                             <RightBlock>

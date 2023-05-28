@@ -10,6 +10,8 @@ import ru.btproject.traineeservice.utils.LazyFieldsFilter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -49,4 +51,8 @@ public class StageActivity implements Serializable
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "stage_id", nullable = false)
     private StageScheduler stage;
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "stageActivity")
+    private Set<ParticActivityHist> activityHists = new LinkedHashSet<>();
 }
