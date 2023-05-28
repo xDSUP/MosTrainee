@@ -11,6 +11,7 @@ export default class AxiosUtils {
             .get<T>(url).then(r => r.data)
             .catch(error => {
                 alert(error.message);
+                window.location.href = '/';
                 if (error.response.status === 403) {
                     authStore.signOut();
                 }
@@ -24,6 +25,7 @@ export default class AxiosUtils {
             .post<T>(url).then(r => r.data)
             .catch(error => {
                 alert(error.message);
+                window.location.href = '/';
                 if (error.response.status === 403) {
                     authStore.signOut();
                 }

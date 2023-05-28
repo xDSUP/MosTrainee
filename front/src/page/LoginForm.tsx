@@ -7,6 +7,7 @@ import {Button} from "../component/Button";
 import {Input} from "../component/Input";
 import {Logo} from "../component/Logo";
 import authStore from "../stores/AuthStore";
+import loginRegistrationState from "../stores/LoginRegistrationState";
 
 class EmailLoginFormState {
 
@@ -237,7 +238,7 @@ export class LoginForm extends Component<{className?: string}, LoginFormState> {
                     }
 
                     <div className="flex justify-center my-5">
-                        <button className="text-white text-opacity-50 ">Зарегистрироваться</button>
+                        <button className="text-white text-opacity-50 " onClick={() => loginRegistrationState.type = "REGISTRATION"}>Зарегистрироваться</button>
                     </div>
                     <button className="flex justify-center items-center bg-white text-black text-xl rounded w-full my-8 h-12">
                         Войти через

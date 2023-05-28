@@ -24,7 +24,8 @@ class MentorInternshipPageState {
         AxiosUtils.get<Application>(Urls.serverUrl + "/api/application/for-current-mentor")
             .then(r => {
                 console.log(r);
-                this.application = r as Application;
+                if (!!r)
+                    this.application = r as Application;
             })
 
         makeAutoObservable(this);

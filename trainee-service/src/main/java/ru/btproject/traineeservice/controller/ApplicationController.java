@@ -24,6 +24,10 @@ public class ApplicationController {
     private final MentorService mentorService;
 
     private static ApplicationDto getListApplicationDto(Application application) {
+        if (application == null)
+        {
+            return null;
+        }
         return ApplicationDto.builder()
                 .id(application.getId())
                 .name(application.getName())
