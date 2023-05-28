@@ -2,29 +2,13 @@ import {Component} from "react";
 import {LoginForm} from "./LoginForm";
 import rightImage from "../images/right.webp"
 import {observer} from "mobx-react";
-import {action, observable} from "mobx";
 import {RegistrationForm} from "./RegistrationForm";
 
-export type PageType = "LOGIN" | "REGISTRATION"
-
-class LoginRegistrationState {
-
-    @observable
-    type: PageType;
-
-    constructor() {
-        this.type = "LOGIN";
-    }
-
-    @action
-    setPageType(type: PageType) {
-        this.type = type;
-    }
-}
+import loginRegistrationState from "../stores/LoginRegistrationState";
 
 @observer
-export class LoginRegistrationPage extends Component<{},LoginRegistrationState> {
-    state = new LoginRegistrationState();
+export class LoginRegistrationPage extends Component<{}> {
+    state = loginRegistrationState;
     render() {
         return (
             <div className="laptop:flex bg-main">

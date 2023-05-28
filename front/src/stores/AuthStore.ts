@@ -25,18 +25,19 @@ class AuthStore {
     @action
     signIn(username: string, password: string) {
         AxiosUtils.login<LoginRequest>(getContextPath() + "/api/login", {username: username, password: password})
-            .catch(error => alert(error.message))
             .then(r  => {
                 this.isAuthorized = true;
                 localStorage.setItem(LocalStorageKeyNames.token, (r as LoginResponse).token);
                 localStorage.setItem(LocalStorageKeyNames.userType, (r as LoginResponse).userType);
-            });
+            })
+            .catch(error => alert(error.message));
     }
 
     @action
     signOut() {
         this.isAuthorized = false;
         localStorage.removeItem(LocalStorageKeyNames.token);
+        localStorage.removeItem(LocalStorageKeyNames.userType);
     }
 
     @computed
