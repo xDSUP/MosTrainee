@@ -1,13 +1,16 @@
 package ru.btproject.traineeservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.btproject.traineeservice.utils.LazyFieldsFilter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -38,4 +41,8 @@ public class StageScheduler implements Serializable
 
     @Column(name = "active", nullable = false)
     private Boolean active = false;
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = LazyFieldsFilter.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "stage")
+    private Set<StageActivity> stageActivities;
 }
