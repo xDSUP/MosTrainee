@@ -84,6 +84,7 @@ public class ApplicationController {
                                     .firstName(solution.getParticipant().getFirstName())
                                     .lastName(solution.getParticipant().getLastName())
                                     .middleName(solution.getParticipant().getMiddleName())
+                                    .rating(solution.getParticipant().getRating().toString())
                                     .build())
                             .build()).toList();
                 })
