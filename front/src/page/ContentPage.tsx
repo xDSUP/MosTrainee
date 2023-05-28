@@ -1,14 +1,13 @@
 import React, {Component, ReactNode} from "react";
-import "./css/fixed-right-block.css"
 
-interface RightCenterBlockProps {
+interface ContentPageProps {
     children: ReactNode;
 }
 
-export class RightBlock extends Component<RightCenterBlockProps> {
+export class ContentPage extends Component<ContentPageProps> {
     render() {
         return (
-            <div className="fixed-right-block">
+            <div className="flex mt-7 ml-72 ">
                 {this.props.children}
             </div>
         );

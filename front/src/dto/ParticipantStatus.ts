@@ -1,0 +1,8 @@
+export enum ParticipantStatus {
+    PENDING = "PENDING",
+    NOT_RELEVANT = "NOT_RELEVANT",
+    RELEVANT = "RELEVANT",
+    REJECTED = "REJECTED",
+    CANDIDATE = "CANDIDATE",
+    INTERN = "INTERN",
+}
