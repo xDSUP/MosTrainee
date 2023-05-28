@@ -4,5 +4,5 @@
 
 .main-content {
     @apply pl-5 pt-10 bg-gray-200 w-10/12 pr-16 rounded-tl-[70px];
-    height: max(100%, 100vh);
+    min-height: 100vh;
 }
